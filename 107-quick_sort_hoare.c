@@ -1,11 +1,11 @@
 #include "sort.h"
 /**
-*change - the positions of two elements into an array
+*swap - the positions of two elements into an array
 *@array: array
 *@item1: array element
 *@item2: array element
 */
-void change(int *array, ssize_t item1, ssize_t item2)
+void swap(int *array, ssize_t item1, ssize_t item2)
 {
 	int tmp;
 
@@ -37,26 +37,26 @@ int hoare_partition(int *array, int first, int last, int size)
 		} while (array[finder] > pivot);
 		if (current >= finder)
 			return (current);
-		change(array, current, finder);
+		swap(array, current, finder);
 		print_array(array, size);
 	}
 }
 /**
- *qsort - quicksort algorithm implementation
- *@array: array
+ *qs - quicksort algorithm implementation
+ *@array: array to be sorted
  *@first: first array element
  *@last: last array element
  *@size: array size
  */
-void qsort(int *array, ssize_t first, ssize_t last, int size)
+void qs(int *array, ssize_t first, ssize_t last, int size)
 {
 	ssize_t position = 0;
 
 	if (first < last)
 	{
 		position = hoare_partition(array, first, last, size);
-		qsort(array, first, position - 1, size);
-		qsort(array, position, last, size);
+		qs(array, first, position - 1, size);
+		qs(array, position, last, size);
 	}
 }
 /**
@@ -68,5 +68,5 @@ void quick_sort_hoare(int *array, size_t size)
 {
 	if (!array || size < 2)
 		return;
-	qsort(array, 0, size - 1, size);
+	qs(array, 0, size - 1, size);
 }
