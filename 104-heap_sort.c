@@ -1,4 +1,4 @@
-nclude "sort.h"
+#include "sort.h"
 
 /**
  * swap - swaps position of values in array
